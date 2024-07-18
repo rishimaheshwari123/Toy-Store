@@ -14,6 +14,7 @@ import SideNavbar from './components/pure-frontend/Navbar/SideNavbar';
 import SingleCategory from './pages/SingleCategory';
 import SubCategorySingle from './pages/SubCategorySingle';
 import ProductDetails from './pages/ProductDetails';
+import AllProducts from './components/Admin/pages/AllProducts';
 const App = () => {
 
   const { isMenuOpen } = useSelector((state) => state.news);
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/admin/category" element={<Category />} />
           <Route path="admin/subcategory" element={<Subcategory />} />
           <Route path="admin/addProduct" element={<AddProduct />} />
+          <Route path="admin/allProduct" element={<AllProducts />} />
 
         </Route>
         <Route path='/login' element={<Login />} />

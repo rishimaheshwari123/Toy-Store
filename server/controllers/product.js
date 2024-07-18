@@ -108,11 +108,12 @@ const getAllNews = async (req, res) => {
   try {
     const news = await News.find()
       .populate('category', 'name')
-      .populate('subcategory', 'name')
+      .populate('subCategory', 'name')
       .exec();
 
     res.json({ success: true, news });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ success: false, message: error.message });
   }
 };
