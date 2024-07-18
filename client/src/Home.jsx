@@ -529,13 +529,15 @@ const Home = () => {
                     </div>
                     <div class="pricingButton">
                       <a
-                        href="register?plan=basic_annual"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnAnnually btnPrimary"
                       >
                         Get Started
                       </a>{" "}
                       <a
-                        href="register?plan=basic_monthly"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnMonthly btnPrimary"
                       >
                         Get Started
@@ -585,13 +587,15 @@ const Home = () => {
                     </div>
                     <div class="pricingButton">
                       <a
-                        href="register?plan=plus_annual"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnAnnually btnOrange"
                       >
                         Get Started
                       </a>{" "}
                       <a
-                        href="register?plan=plus_monthly"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnMonthly btnOrange"
                       >
                         Get Started
@@ -634,13 +638,15 @@ const Home = () => {
                     </div>
                     <div class="pricingButton">
                       <a
-                        href="register?plan=premium_annual"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnAnnually btnPurple"
                       >
                         Get Started
                       </a>{" "}
                       <a
-                        href="register?plan=premium_monthly"
+                        href="https://wa.me/+919300648212"
+                        target="_blank"
                         class="btn btnMonthly btnPurple"
                       >
                         Get Started
