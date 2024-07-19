@@ -39,16 +39,17 @@ const Character = () => {
         categories.map((category) => (
           <div key={category._id} className="mb-10">
             <div className="flex justify-center items-center my-10">
-              <div className="relative w-full bg-yellow-500 py-6">
-                <div className="absolute left-0 h-full w-10 bg-yellow-500 clip-path-left-triangle"></div>
+              <div className="relative w-full bg-yellow-500 py-6 overflow-y-hidden">
+                <div className="absolute left-0 h-full w-10 bg-yellow-500 clip-path-left-triangle overflow-y-hidden"></div>
                 <div className="absolute right-0 h-full w-10 bg-yellow-500 clip-path-right-triangle"></div>
-                <div className="text-center">
+                <div className="text-center overflow-y-hidden">
                   <span className="text-blue-700 font-bold text-2xl">
                     {category.name}
                   </span>
                 </div>
               </div>
             </div>
+
             {category.product.length === 0 ? (
               <p className="text-center">
                 No products available in this category.

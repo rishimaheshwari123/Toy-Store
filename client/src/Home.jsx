@@ -354,7 +354,7 @@ const Home = () => {
                 </div>
                 <div class="flip-box-back">
                   <img src={trend1}></img>
-                  <p>kjhgfd</p>
+                  <p>Test</p>
                   <button>shop now</button>
                 </div>
               </div>
@@ -380,7 +380,7 @@ const Home = () => {
                 </div>
                 <div class="flip-box-back">
                   <img src={trend3}></img>
-                  <p>uytre</p>
+                  <p>Test</p>
                   <button>shop now</button>
                 </div>
               </div>
@@ -390,67 +390,68 @@ const Home = () => {
 
         {/* spotlight */}
         <div className="spotlight"></div>
-
+        <br />
         {/* Promo code */}
-        <div className="promo-section">
-          <div className="promocode">
-            <img id="cat-img2" src={shop5}></img>
+        <div className="promo-section lg:mb-32 ">
+          <div className="promocode ">
+            <img id="cat-img2" src={shop5} />
           </div>
-          <div className="promo-div">
-            <div class="coupon">
-              <div class="containerpro">
-                <h3>Company Logo</h3>
+          <br />
+          <div className="grid lg:grid-cols-2 max-w-7xl mx-auto px-5 gap-8">
+            <div className=" bg-white shadow-md p-4">
+              <div className=" text-center mb-4">
+                <h3 className="text-lg font-semibold">Company Logo</h3>
               </div>
-              <img src={promocode} className="promoimg" />
-              <div class="containerpro">
-                <h2>
-                  <b>20% OFF YOUR PURCHASE</b>
-                </h2>
-                <p>
+              <img src={promocode} className=" w-full mb-4" />
+              <div className=" text-center mb-4">
+                <h2 className="text-2xl font-bold">20% OFF YOUR PURCHASE</h2>
+                <p className="mt-2 text-gray-600">
                   Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te
                   minim soleat senserit, ex quo luptatum tacimates voluptatum,
                   salutandi delicatissimi eam ea. In sed nullam laboramus
                   appellantur, mei ei omnis dolorem mnesarchum.
                 </p>
               </div>
-              <div class="containerpro">
-                <p>
-                  Use Promo Code: <span class="promo">BOH232</span>
+              <div className=" text-center">
+                <p className="mt-2">
+                  Use Promo Code: <span className=" font-semibold">BOH232</span>
                 </p>
-                <p class="expire">Expires: Jan 03, 2021</p>
+                <p className=" text-gray-500">Expires: Jan 03, 2021</p>
               </div>
             </div>
-            <div class="coupon">
-              <div class="containerpro">
-                <h3>Company Logo</h3>
+            <div className=" bg-white shadow-md p-4">
+              <div className=" text-center mb-4">
+                <h3 className="text-lg font-semibold">Company Logo</h3>
               </div>
-              <img src={promocode} className="promoimg" />
-              <div class="containerpro">
-                <h2>
-                  <b>20% OFF YOUR PURCHASE</b>
-                </h2>
-                <p>
+              <img src={promocode} className=" w-full mb-4" />
+              <div className=" text-center mb-4">
+                <h2 className="text-2xl font-bold">20% OFF YOUR PURCHASE</h2>
+                <p className="mt-2 text-gray-600">
                   Lorem ipsum dolor sit amet, et nam pertinax gloriatur. Sea te
                   minim soleat senserit, ex quo luptatum tacimates voluptatum,
                   salutandi delicatissimi eam ea. In sed nullam laboramus
                   appellantur, mei ei omnis dolorem mnesarchum.
                 </p>
               </div>
-              <div class="containerpro">
-                <p>
-                  Use Promo Code: <span class="promo">BOH232</span>
+              <div className=" text-center">
+                <p className="mt-2">
+                  Use Promo Code: <span className=" font-semibold">BOH232</span>
                 </p>
-                <p class="expire">Expires: Jan 03, 2021</p>
+                <p className=" text-gray-500">Expires: Jan 03, 2021</p>
               </div>
             </div>
           </div>
         </div>
+
+        <br />
+        <br />
 
         {/* best for u */}
         <div className="photos-sec">
           <div className="photos-head">
             <img id="cat-img2" src={shop6}></img>
           </div>
+          <br />
 
           <div className="photos">
             <div className="first-div">
@@ -478,7 +479,7 @@ const Home = () => {
         </div>
 
         {/* book nook ad */}
-        <div className="booknook"></div>
+        <div className="booknook mt-10"></div>
 
         {/* vedio section */}
         <div className="video">
@@ -488,170 +489,155 @@ const Home = () => {
         </div>
 
         {/* subscription section */}
-        <div className="shopbycat">
+        <div className="shopbycat lg:ml-16 mt-10">
           <img id="cat-img" src={sub}></img>
         </div>
+        <br />
 
-        <section class="ptbm pricingPaid">
-          <div class="containersub">
-            <div class="row">
-              <div class="col-xs-12 col-md-3 col-sm-6">
-                <div class="panel pricingGrid pricingBasic" id="sub1">
-                  <div class="panel-heading">
-                    <h3>Basic</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p>Features Include</p>
-                    <ul>
-                      <li>
-                        <strong>2</strong> Users
-                      </li>
-                      <li>
-                        <strong>2</strong> Service Workflows
-                      </li>
-                      <li>Unlimited Invoice</li>
-                    </ul>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="pricingRate">
-                      <div class="priceAnnual">
-                        <span class="price">
-                          <sup>$</sup>50<small>/month</small>
-                        </span>
-                        <span class="pricePlans">Save $120 Annually</span>
-                      </div>
-                      <div class="priceMonthly">
-                        <span class="price priceMonthly">
-                          <sup>$</sup>60<small>/month</small>
-                        </span>{" "}
-                        <span class="pricePlans">$50 when paid annually</span>
-                      </div>
+        <section class="pt-8 pb-8 mt-20 mb-36">
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {/* <!-- Basic Plan --> */}
+              <div class="border rounded-lg shadow-lg bg-white">
+                <div class="bg-gray-100 p-4 text-center">
+                  <h3 class="text-xl font-semibold text-blue-600">Basic</h3>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-semibold">Features Include</p>
+                  <ul class="list-none p-0">
+                    <li class="my-2">
+                      <strong>2</strong> Users
+                    </li>
+                    <li class="my-2">
+                      <strong>2</strong> Service Workflows
+                    </li>
+                    <li class="my-2">Unlimited Invoice</li>
+                  </ul>
+                </div>
+                <hr />
+                <div class="p-4 text-center">
+                  <div class="mb-4">
+                    <div class="text-2xl font-bold text-blue-600">
+                      <sup>$</sup>50<small>/month</small>
                     </div>
-                    <div class="pricingButton">
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnAnnually btnPrimary"
-                      >
-                        Get Started
-                      </a>{" "}
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnMonthly btnPrimary"
-                      >
-                        Get Started
-                      </a>
+                    <div class="text-sm text-gray-500">Save $120 Annually</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-blue-600">
+                      <sup>$</sup>60<small>/month</small>
                     </div>
+                    <div class="text-sm text-gray-500">
+                      $50 when paid annually
+                    </div>
+                  </div>
+                  <div class="mt-4 flex justify-center   min-w-full ">
+                    <a
+                      href="https://wa.me/+919300648212"
+                      target="_blank"
+                      className="lg:px-[110px] px-[70px] py-2 bg-blue-500 text-white rounded"
+                    >
+                      Get Started
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-md-3 col-sm-6" id="sub2">
-                <div class="panel pricingGrid pricingPlus">
-                  <div class="panel-heading">
-                    <h3>Plus</h3>
-                    <label>Most Popular</label>
-                    <div class="christmasIcons">
-                      <img
-                        class="christmasHat"
-                        src="https://s3-ap-southeast-2.amazonaws.com/agentcis-wp/wp-content/uploads/20161201053953/christmas-hat-icon.png"
-                      />
+
+              {/* <!-- Plus Plan --> */}
+              <div class="border rounded-lg shadow-lg bg-white relative">
+                <div class="bg-gray-100 p-4 text-center relative">
+                  <h3 class="text-xl font-semibold text-orange-600">Plus</h3>
+                  <label class="block text-red-500 font-semibold">
+                    Most Popular
+                  </label>
+                  <div class="absolute -top-8 -right-6 mt-2 mr-2">
+                    <img
+                      class="w-12 h-12"
+                      src="https://s3-ap-southeast-2.amazonaws.com/agentcis-wp/wp-content/uploads/20161201053953/christmas-hat-icon.png"
+                      alt="Christmas Hat"
+                    />
+                  </div>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-semibold">Features Include</p>
+                  <ul class="list-none p-0">
+                    <li class="my-2">
+                      <strong>5</strong> Users
+                    </li>
+                    <li class="my-2">
+                      <strong>4</strong> Service Workflows
+                    </li>
+                    <li class="my-2">Unlimited Invoice</li>
+                  </ul>
+                </div>
+                <hr />
+                <div class="p-4 text-center">
+                  <div class="mb-4">
+                    <div class="text-2xl font-bold text-orange-600">
+                      <sup>$</sup>100<small>/month</small>
+                    </div>
+                    <div class="text-sm text-gray-500">Save $240 Annually</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-orange-600">
+                      <sup>$</sup>120<small>/month</small>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                      $100 when paid annually
                     </div>
                   </div>
-                  <div class="panel-body">
-                    <p>Features Include</p>
-                    <ul>
-                      <li>
-                        <strong>5</strong> Users
-                      </li>
-                      <li>
-                        <strong>4</strong> Service Workflows
-                      </li>
-                      <li>Unlimited Invoice</li>
-                    </ul>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="pricingRate">
-                      <div class="priceAnnual">
-                        <span class="price">
-                          <sup>$</sup>100<small>/month</small>
-                        </span>
-                        <span class="pricePlans">Save $240 Annually</span>
-                      </div>
-                      <div class="priceMonthly">
-                        <span class="price priceMonthly">
-                          <sup>$</sup>120<small>/month</small>
-                        </span>{" "}
-                        <span class="pricePlans">$100 when paid annually</span>
-                      </div>
-                    </div>
-                    <div class="pricingButton">
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnAnnually btnOrange"
-                      >
-                        Get Started
-                      </a>{" "}
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnMonthly btnOrange"
-                      >
-                        Get Started
-                      </a>
-                    </div>
+                  <div class="mt-4 flex justify-center">
+                    <a
+                      href="https://wa.me/+919300648212"
+                      target="_blank"
+                      class="lg:px-[110px] px-[70px] py-2 bg-orange-500 text-white rounded"
+                    >
+                      Get Started
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-md-3 col-sm-6" id="sub3">
-                <div class="panel pricingGrid pricingPremium">
-                  <div class="panel-heading">
-                    <h3>Premium</h3>
-                  </div>
-                  <div class="panel-body">
-                    <p>Features Include</p>
-                    <ul>
-                      <li>
-                        <strong>10</strong> Users
-                      </li>
-                      <li>
-                        <strong>8</strong> Service Workflows
-                      </li>
-                      <li>Unlimited Invoice</li>
-                    </ul>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="pricingRate">
-                      <div class="priceAnnual">
-                        <span class="price">
-                          <sup>$</sup>150<small>/month</small>
-                        </span>
-                        <span class="pricePlans">Save $360 Annually</span>
-                      </div>
-                      <div class="priceMonthly">
-                        <span class="price priceMonthly">
-                          <sup>$</sup>180<small>/month</small>
-                        </span>{" "}
-                        <span class="pricePlans">$150 when paid annually</span>
-                      </div>
+
+              {/* <!-- Premium Plan --> */}
+              <div class="border rounded-lg shadow-lg bg-white">
+                <div class="bg-gray-100 p-4 text-center">
+                  <h3 class="text-xl font-semibold text-purple-600">Premium</h3>
+                </div>
+                <div class="p-4 text-center">
+                  <p class="font-semibold">Features Include</p>
+                  <ul class="list-none p-0">
+                    <li class="my-2">
+                      <strong>10</strong> Users
+                    </li>
+                    <li class="my-2">
+                      <strong>8</strong> Service Workflows
+                    </li>
+                    <li class="my-2">Unlimited Invoice</li>
+                  </ul>
+                </div>
+                <hr />
+                <div class="p-4 text-center">
+                  <div class="mb-4">
+                    <div class="text-2xl font-bold text-purple-600">
+                      <sup>$</sup>150<small>/month</small>
                     </div>
-                    <div class="pricingButton">
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnAnnually btnPurple"
-                      >
-                        Get Started
-                      </a>{" "}
-                      <a
-                        href="https://wa.me/+919300648212"
-                        target="_blank"
-                        class="btn btnMonthly btnPurple"
-                      >
-                        Get Started
-                      </a>
+                    <div class="text-sm text-gray-500">Save $360 Annually</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-purple-600">
+                      <sup>$</sup>180<small>/month</small>
                     </div>
+                    <div class="text-sm text-gray-500">
+                      $150 when paid annually
+                    </div>
+                  </div>
+                  <div class="mt-4 flex justify-center ">
+                    <a
+                      href="https://wa.me/+919300648212"
+                      target="_blank"
+                      class="lg:px-[110px] px-[70px] py-2 bg-purple-500 text-white rounded"
+                    >
+                      Get Started
+                    </a>
                   </div>
                 </div>
               </div>
@@ -665,6 +651,7 @@ const Home = () => {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58681.27016569356!2d77.39621378002248!3d23.185546739059628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4397df517e3f%3A0xb0a2c4bc624133d6!2sToy%20Station!5e0!3m2!1sen!2sin!4v1715321935180!5m2!1sen!2sin"
             allowfullscreen=""
             loading="lazy"
+            className="overflow-y-hidden"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
@@ -682,7 +669,7 @@ const Home = () => {
               <img src={logo} />
             </div>
             <div class="column">
-              <form action="/action_page.php">
+              <form action="/">
                 <label for="fname">First Name</label>
                 <input
                   type="text"
