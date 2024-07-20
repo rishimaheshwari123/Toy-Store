@@ -60,17 +60,22 @@ function SubCategorySingle() {
                     key={newsItem._id}
                     className="bg-white shadow-lg rounded-lg p-6 mb-6 border border-gray-200 grid lg:grid-cols-2 gap-5"
                   >
-                    <img
-                      src={newsItem.images[0]?.url}
-                      alt={newsItem.title}
-                      className="w-full h-[200px] object-cover rounded-lg"
-                    />
+                    <div className="w-[500px] h-[400px] overflow-hidden flex">
+                      <img
+                        src={newsItem.images[0]?.url}
+                        alt={newsItem.title}
+                        className="min-w-full min-h-full object-contain"
+                      />
+                    </div>
+
                     <div>
-                      <p className="text-2xl font-bold">{newsItem.title}</p>
-                      <p className="text-gray-700 mb-2">
+                      <p className="text-2xl font-bold mt-2">
+                        {newsItem.title}
+                      </p>
+                      <p className="text-gray-700 mt-3">
                         {newsItem.description}
                       </p>
-                      <p className="text-red-700 font-bold mb-2">
+                      <p className="text-red-700 font-bold mt-2 mb-2">
                         <span>Price :</span> ₹{newsItem.price}
                       </p>
                       <a

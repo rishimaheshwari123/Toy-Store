@@ -96,6 +96,11 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+            <li>
+              <Link to="/products" className="text-white hover:text-yellow-300">
+                Products
+              </Link>
+            </li>
             {categories.map((category, index) => (
               <li
                 key={category._id}
