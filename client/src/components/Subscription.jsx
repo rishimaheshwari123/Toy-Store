@@ -5,10 +5,10 @@ const Subscription = () => {
   return (
     <div>
       <br />
-      <div className="shopbycat lg:ml-16 mt-10">
+      <div className="shopbycat lg:ml-16 mt-12">
         <img id="cat-img" src={sub}></img>
       </div>
-      <section class="pt-8 pb-8 mt-12 ">
+      <section class="pt-8 pb-8 lg:mt-12 ">
         <div class="max-w-6xl mx-auto px-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {/* <!-- Basic Plan --> */}

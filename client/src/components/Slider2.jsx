@@ -80,7 +80,7 @@ const Slider2 = () => {
 
   return (
     <>
-      <p className="uppercase text-xl text-center my-16 lg:text-3xl font-bold text-clip">
+      <p className="uppercase text-xl text-center my-8 lg:text-3xl font-bold text-clip">
         Our latest Features
       </p>
       <Swiper
@@ -124,10 +124,6 @@ const Slider2 = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <video muted autoPlay loop id="video">
-        <source src={vdo} type="video/mp4" />
-      </video>
     </>
   );
 };

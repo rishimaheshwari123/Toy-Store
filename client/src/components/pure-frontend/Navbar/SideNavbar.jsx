@@ -127,7 +127,16 @@ function SideNavbar() {
                       to="/"
                       className="flex items-center space-x-1 text-white"
                     >
-                      <span>होम</span>
+                      <span>Home</span>
+                    </Link>
+                    <div className=" min-w-full min-h-[1px] my-3 bg-black"></div>
+                  </li>
+                  <li>
+                    <Link
+                      to="/products"
+                      className="flex items-center space-x-1 text-white"
+                    >
+                      <span>Products</span>
                     </Link>
                     <div className=" min-w-full min-h-[1px] my-3 bg-black"></div>
                   </li>
