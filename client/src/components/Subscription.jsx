@@ -32,16 +32,16 @@ const Subscription = () => {
               <div class="p-4 text-center">
                 <div class="mb-4">
                   <div class="text-2xl font-bold text-blue-600">
-                    <sup>$</sup>50<small>/month</small>
+                    <sup>₹</sup>50<small>/month</small>
                   </div>
                   <div class="text-sm text-gray-500">Save $120 Annually</div>
                 </div>
                 <div>
                   <div class="text-2xl font-bold text-blue-600">
-                    <sup>$</sup>60<small>/month</small>
+                    <sup>₹</sup>60<small>/month</small>
                   </div>
                   <div class="text-sm text-gray-500">
-                    $50 when paid annually
+                    ₹50 when paid annually
                   </div>
                 </div>
                 <div class="mt-4 flex justify-center   min-w-full ">
@@ -87,16 +87,16 @@ const Subscription = () => {
               <div class="p-4 text-center">
                 <div class="mb-4">
                   <div class="text-2xl font-bold text-orange-600">
-                    <sup>$</sup>100<small>/month</small>
+                    <sup>₹</sup>100<small>/month</small>
                   </div>
-                  <div class="text-sm text-gray-500">Save $240 Annually</div>
+                  <div class="text-sm text-gray-500">Save ₹240 Annually</div>
                 </div>
                 <div>
                   <div class="text-2xl font-bold text-orange-600">
-                    <sup>$</sup>120<small>/month</small>
+                    <sup>₹</sup>120<small>/month</small>
                   </div>
                   <div class="text-sm text-gray-500">
-                    $100 when paid annually
+                    ₹100 when paid annually
                   </div>
                 </div>
                 <div class="mt-4 flex justify-center">
@@ -132,16 +132,16 @@ const Subscription = () => {
               <div class="p-4 text-center">
                 <div class="mb-4">
                   <div class="text-2xl font-bold text-purple-600">
-                    <sup>$</sup>150<small>/month</small>
+                    <sup>₹</sup>150<small>/month</small>
                   </div>
-                  <div class="text-sm text-gray-500">Save $360 Annually</div>
+                  <div class="text-sm text-gray-500">Save ₹360 Annually</div>
                 </div>
                 <div>
                   <div class="text-2xl font-bold text-purple-600">
-                    <sup>$</sup>180<small>/month</small>
+                    <sup>₹</sup>180<small>/month</small>
                   </div>
                   <div class="text-sm text-gray-500">
-                    $150 when paid annually
+                    ₹150 when paid annually ₹150 when paid annually
                   </div>
                 </div>
                 <div class="mt-4 flex justify-center ">

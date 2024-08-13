@@ -8,7 +8,9 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
 const Footer = () => {
+  const { token } = useSelector((state) => state.auth);
   return (
     <div>
       <footer>
@@ -104,16 +106,11 @@ const Footer = () => {
             <ul className="box">
               <li className="link_name">Account</li>
               <li>
-                <Link to="#">Profile</Link>
-              </li>
-              <li>
-                <Link to="#">Subscription</Link>
-              </li>
-              <li>
-                <Link to="#">Products</Link>
-              </li>
-              <li>
-                <Link to="#">Purchase</Link>
+                {token ? (
+                  <Link to="/admin/dashboard">Admin Login</Link>
+                ) : (
+                  <Link to="/login">Admin Login</Link>
+                )}
               </li>
             </ul>
             <ul className="box">

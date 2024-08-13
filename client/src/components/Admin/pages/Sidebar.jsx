@@ -83,7 +83,7 @@ const Sidebar = () => {
     <div
       ref={sidebarRef}
       className={`fixed h-screen top-0 ${
-        isCollapsed ? "w-16" : "w-64"
+        isCollapsed ? "w-20" : "w-64"
       } bg-gray-900 transition-all duration-300 z-50`}
     >
       <div className="flex items-center justify-between p-4">
@@ -93,11 +93,12 @@ const Sidebar = () => {
             isCollapsed ? "hidden" : "block"
           } text-white font-bold text-xl`}
         >
-          <img
+          {/* <img
             src={"logo"}
             alt=""
             className="w-[50px] h-[50px] lg:w-12 lg:h-12 object-cover rounded-full"
-          />
+          /> */}
+          <p>Logo</p>
         </div>
         {/* Toggle button */}
         <button
