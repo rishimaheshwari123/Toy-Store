@@ -5,7 +5,7 @@ import { endpoints, adminEndpoints } from "../apis";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
-const { LOGIN_API, SIGNUP_API, SEND_OTP_API, VERIFY_OTP_API } = endpoints;
+const { LOGIN_API, SIGNUP_API, SEND_OTP_API, VERIFY_OTP_API, GET_SINGEL_USER } = endpoints;
 
 const {
   ADD_NEWS_API,
@@ -74,8 +74,8 @@ export async function signUp(formData, navigate, dispatch) {
     localStorage.setItem("user", JSON.stringify(response.data.user))
 
     localStorage.setItem("token", JSON.stringify(response.data.token))
-    
-    // navigate("/");
+
+    navigate("/");
 
   } catch (error) {
     console.log("SIGNUP API ERROR............", error);
@@ -120,7 +120,7 @@ export async function login(email, password, navigate, dispatch) {
     });
     dispatch(setToken(response?.data?.token));
     dispatch(setUser(response.data.user));
-    // navigate("/admin/dashboard");
+    navigate("/admin/dashboard");
   } catch (error) {
     console.log("LOGIN API ERROR............", error);
     Swal.fire({
@@ -132,6 +132,25 @@ export async function login(email, password, navigate, dispatch) {
     });
   }
 }
+
+export const getSingleUserApi = async (id) => {
+  try {
+    const response = await apiConnector("GET", `${GET_SINGEL_USER}/${id}`);
+
+    if (!response?.data?.success) {
+      throw new Error(response?.data?.message || "Could not fetch user data");
+    }
+
+    return response?.data?.user || null;
+  } catch (error) {
+    console.error("Error in getting user:", error.message || error);
+
+    return null; // Return null instead of an empty array for a single user fetch
+  }
+};
+
+
+
 
 export function sendOtp(email, navigate) {
   return async (dispatch) => {

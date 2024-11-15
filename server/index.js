@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload")
+const cookieParser = require("cookie-parser")
 
 // env configration 
 dotenv.config();
@@ -16,6 +17,8 @@ const app = express();
 connectDB();
 // middleware 
 app.use(express.json())
+app.use(cookieParser());
+
 app.use(cors());
 
 
@@ -29,13 +32,15 @@ cloudinaryConnect();
 
 // routes 
 
-app.use("/api/v1/admin", require("./routes/authRoute"))
+app.use("/api/v1/auth", require("./routes/authRoute"))
 app.use("/api/v1/culture", require("./routes/clutureRoute"))
 app.use("/api/v1/gallery", require("./routes/galleryRoute"))
 app.use("/api/v1/category", require("./routes/category"))
 app.use("/api/v1/subcategory", require("./routes/subcategoryRoutes"))
 app.use("/api/v1/product", require("./routes/productRoute"))
 app.use("/api/v1/image", require("./routes/imageRoute"))
+app.use("/api/v1/subscription", require("./routes/subscriptionRoute"))
+app.use("/api/v1/orders", require("./routes/orderRoute"))
 
 app.use("/", (req, res) => {
     res.send("Ha bhai chal rha hu. Uski tarha tere ko chod kar thodi jaunga 😀")

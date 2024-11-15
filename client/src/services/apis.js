@@ -8,14 +8,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export const endpoints = {
   LOGIN_API: BASE_URL + "/auth/login",
   SIGNUP_API: BASE_URL + "/auth/register",
-  
-  SEND_OTP_API : BASE_URL +"/auth/sentotp",
-  VERIFY_OTP_API : BASE_URL +"/auth/verifyotp",
-
-
-  COMMENT_API : BASE_URL + "/news/comment",
-  LIKE_API : BASE_URL + "/news/like",
-  REMOVE_LIKE_API : BASE_URL + "/news/removelike",
+  GET_SINGEL_USER: BASE_URL + "/auth/get",
 }
 
 export const adminEndpoints = {
@@ -41,11 +34,11 @@ export const adminEndpoints = {
 
 
 
-   //LIve nEWS
-   CREATE_LIVE_NEWS: BASE_URL + "/live/create",
-   GET_ALL_LIVE_NEWS: BASE_URL + "/live/getAll",
-   DELETE_LIVE_NEWS: BASE_URL + "/live/delete",
-   ACTIVE_LIVE_NEWS: BASE_URL + "/live/update",
+  //LIve nEWS
+  CREATE_LIVE_NEWS: BASE_URL + "/live/create",
+  GET_ALL_LIVE_NEWS: BASE_URL + "/live/getAll",
+  DELETE_LIVE_NEWS: BASE_URL + "/live/delete",
+  ACTIVE_LIVE_NEWS: BASE_URL + "/live/update",
 
 
   // Image
@@ -77,4 +70,16 @@ export const adminEndpoints = {
 
 
 
+}
+
+
+export const subscription = {
+  CREATE_PAYMENT: BASE_URL + "/subscription/create",
+  VERIFY_PAYMENT: BASE_URL + "/subscription/payment-success",
+}
+
+export const order = {
+  CREATE_PAYMENT: BASE_URL + "/orders/create",
+  VERIFY_PAYMENT: BASE_URL + "/orders/payment-success",
+  GET_ORDERS: BASE_URL + "/orders/getAll"
 }

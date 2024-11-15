@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "./../../../logo.png";
-
 import { IoMenu } from "react-icons/io5";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchCategory } from "../../../services/operations/admin";
 import { handleIsMenuOpen } from "../../../redux/newsSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../services/operations/user"; // Import the logout function
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -17,18 +17,9 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
-
   const { category } = useSelector((state) => state.news);
-
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotifcationOpen, setNotification] = useState(false);
-
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
-  const togglenoti = () => {
-    setNotification(!isNotifcationOpen);
-  };
 
   const dispatch = useDispatch();
 
@@ -70,6 +61,11 @@ const Navbar = () => {
     return text;
   };
 
+  // Handle logout
+  const handleLogout = () => {
+    dispatch(logout(navigate));
+  };
+
   return (
     <nav className="text-xl fixed w-screen top-0 z-50">
       <div className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 relative">
@@ -90,7 +86,7 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <ul className="hidden md:flex space-x-6 items-center ">
+          <ul className="hidden md:flex space-x-6 items-center">
             <li>
               <Link to="/" className="text-white hover:text-yellow-300">
                 Home
@@ -104,7 +100,7 @@ const Navbar = () => {
             {categories.map((category, index) => (
               <li
                 key={category._id}
-                className="group "
+                className="group"
                 onMouseEnter={() => {
                   handleDropdownClick(index);
                   setClick(true);
@@ -120,7 +116,6 @@ const Navbar = () => {
                   className={`text-white hover:text-yellow-300 ${
                     dropdownIndex === index ? "underline" : ""
                   }`}
-                  onClick={() => setClick(false)}
                 >
                   {category.name}
                 </Link>
@@ -142,8 +137,38 @@ const Navbar = () => {
                 )}
               </li>
             ))}
+            {/* Admin Dashboard Button */}
+            {user?.role === "Admin" && (
+              <li>
+                <Link
+                  to="/admin/dashboard"
+                  className="text-white px-5 py-2 bg-green-400 rounded-sm hover:text-yellow-300"
+                >
+                  Dashboard
+                </Link>
+              </li>
+            )}
+            {/* Logout Button */}
+            {!user ? (
+              <Link
+                to={"/login"}
+                className="text-white bg-yellow-600 px-5 py-2 rounded-sm hover:text-black"
+              >
+                Login
+              </Link>
+            ) : (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="text-white bg-red-600 px-5 py-2 rounded-sm hover:text-yellow-300"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
 
+          {/* Mobile Menu */}
           <ul
             className={`md:hidden ${
               nav ? "block" : "hidden"
@@ -155,16 +180,13 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/" className="text-white hover:text-yellow-300">
-                Home
+              <Link to="/products" className="text-white hover:text-yellow-300">
+                Products
               </Link>
             </li>
             {categories.map((category, index) => (
               <li key={category._id} className="hover:text-yellow-300">
-                <div
-                  to={category.href || "#"}
-                  className="flex items-center gap-4"
-                >
+                <div className="flex items-center gap-4">
                   <Link
                     to={`/category/${category._id}`}
                     onClick={() => setNav(false)}
@@ -201,6 +223,7 @@ const Navbar = () => {
               </li>
             ))}
 
+            {/* Social Icons */}
             <div className="flex items-center justify-center space-x-4">
               <Link to="https://www.facebook.com">
                 <FaFacebook

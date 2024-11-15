@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Backdrop from "./Backdrop";
 import { handleIsMenuOpen } from "../../../redux/newsSlice";
 import { fetchCategory } from "../../../services/operations/admin";
+import { logout } from "../../../services/operations/user";
 
 function getGreeting() {
   const currentHour = new Date().getHours();
@@ -32,6 +33,8 @@ function getGreeting() {
 }
 
 function SideNavbar() {
+  const { user } = useSelector((state) => state.auth);
+
   const { isMenuOpen } = useSelector((state) => state.news);
   const [dropdownIndex, setDropdownIndex] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -47,6 +50,10 @@ function SideNavbar() {
   const handleClose = () => {
     // console.log("Backdrop clicked, closing navbar");
     dispatch(handleIsMenuOpen());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   useEffect(() => {
@@ -184,6 +191,23 @@ function SideNavbar() {
                       )}
                     </li>
                   ))}
+                  {!user ? (
+                    <Link
+                      to={"/login"}
+                      className="text-white bg-yellow-600 px-5 py-2 rounded-sm hover:text-black"
+                    >
+                      Login
+                    </Link>
+                  ) : (
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="text-white bg-red-600 px-5 py-2 rounded-sm hover:text-yellow-300"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
