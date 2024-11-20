@@ -3,12 +3,14 @@ import Navbar from "../../pure-frontend/Navbar/Navbar";
 import Footer from "../../footer/Footer";
 import { useSelector } from "react-redux";
 import { fetchSingleOrders } from "../../../services/operations/order";
+import { getSingleUserApi } from "../../../services/operations/admin";
 
 const MyOrder = () => {
   const { user } = useSelector((state) => state.auth);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [subscription, setSubscription] = useState({});
 
   const getSingleOrder = async () => {
     try {
@@ -22,10 +24,19 @@ const MyOrder = () => {
       setLoading(false);
     }
   };
+  const getSubscriptionDetails = async () => {
+    try {
+      const response = await getSingleUserApi(user?._id);
+      setSubscription(response);
+    } catch (error) {
+      console.error("Error fetching subscription details:", error);
+    }
+  };
 
   useEffect(() => {
     if (user?.token && user?._id) {
       getSingleOrder();
+      getSubscriptionDetails();
     }
   }, [user]);
 
@@ -92,6 +103,14 @@ const MyOrder = () => {
                     </span>
                     <span className="text-gray-800">
                       {new Date(order.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-500 font-medium">
+                      Subscription
+                    </span>
+                    <span className="text-gray-800">
+                      {subscription?.subscriptions[0]?.type}
                     </span>
                   </div>
                 </div>
