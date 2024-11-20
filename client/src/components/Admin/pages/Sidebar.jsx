@@ -70,7 +70,11 @@ const Sidebar = () => {
       label: "Sub-Category",
     },
     { to: "/admin/order", icon: <FcAdvertising />, label: "Orders" },
-    // { to: "/admin/poll", icon: <FcAdvertising />, label: "Create Poll" },
+    {
+      to: "/admin/subscription",
+      icon: <FcAdvertising />,
+      label: "Get Subscriptions",
+    },
     // {
     //   to: "/admin/livestriming",
     //   icon: <FcVideoCall />,

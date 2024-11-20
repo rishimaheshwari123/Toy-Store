@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { subscription } from "../apis"
 
-const { CREATE_PAYMENT, VERIFY_PAYMENT } = subscription
+const { CREATE_PAYMENT, VERIFY_PAYMENT, GET_ALL_SUB } = subscription
 
 export const createOrder = async (totalAmount, token) => {
     try {
@@ -79,6 +79,24 @@ export const initiatePayment = async (type, totalAmount, orderId, token) => {
     } catch (error) {
         console.error("Payment initiation error:", error);
         toast.error("Failed to initiate payment. Please try again.");
+    }
+};
+
+
+export const getSubscriptionApi = async (token) => {
+    try {
+        const response = await axios.get(GET_ALL_SUB, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (!response?.data?.success) {
+            throw new Error(response?.data?.message);
+        }
+        return response?.data?.subscriptions || [];
+    } catch (error) {
+        console.error("Error fetching subscriptions:", error.message);
+        return [];
     }
 };
 

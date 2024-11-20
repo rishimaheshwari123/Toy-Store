@@ -76,6 +76,7 @@ export const adminEndpoints = {
 export const subscription = {
   CREATE_PAYMENT: BASE_URL + "/subscription/create",
   VERIFY_PAYMENT: BASE_URL + "/subscription/payment-success",
+  GET_ALL_SUB: BASE_URL + "/subscription/getAll",
 }
 
 export const order = {

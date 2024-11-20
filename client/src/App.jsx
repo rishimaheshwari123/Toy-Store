@@ -19,6 +19,7 @@ import Product from "./pages/Product";
 import Register from "./components/Admin/pages/Register";
 import Orders from "./components/Admin/pages/Orders";
 import MyOrder from "./components/Admin/pages/MyOrder";
+import GetSubscription from "./components/Admin/pages/GetSubscription";
 
 const App = () => {
   const { isMenuOpen } = useSelector((state) => state.news);
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/admin/addProduct" element={<AddProduct />} />
           <Route path="/admin/allProduct" element={<AllProducts />} />
           <Route path="/admin/order" element={<Orders />} />
+          <Route path="/admin/subscription" element={<GetSubscription />} />
         </Route>
 
         {/* Authentication Routes */}

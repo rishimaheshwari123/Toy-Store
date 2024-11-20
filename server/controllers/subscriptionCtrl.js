@@ -65,6 +65,23 @@ const verifyPaymentCtrl = async (req, res) => {
 };
 
 
+const getAllSubctrl = async (req, res) => {
+    try {
+        const subscriptions = await subscriptionModel.find({}).populate("userId")
+        return res.status(200).json({
+            success: true,
+            subscriptions,
+        });
+    } catch (error) {
+        console.error("Error in getAllSubctrl:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Error in getting subscription",
+        });
+    }
+};
 
 
-module.exports = { createSubscriptionCtrl, verifyPaymentCtrl, }
+
+
+module.exports = { createSubscriptionCtrl, verifyPaymentCtrl, getAllSubctrl }
