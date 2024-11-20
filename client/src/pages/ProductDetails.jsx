@@ -52,6 +52,7 @@ const ProductDetails = () => {
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/product/${id}`
         );
+        // console.log(response?.data?.news?.title);
         setNews(response?.data?.news);
       } catch (err) {
         console.error(err);
@@ -97,7 +98,8 @@ const ProductDetails = () => {
         address,
         orderId,
         quantity,
-        user?.token
+        user?.token,
+        news?.title
       );
 
       // Close modal on success

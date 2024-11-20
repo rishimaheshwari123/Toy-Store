@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { order } from "../apis"
 
-const { CREATE_PAYMENT, VERIFY_PAYMENT, GET_ORDERS } = order
+const { CREATE_PAYMENT, VERIFY_PAYMENT, GET_ORDERS, GET_SINGLE_ORDERS } = order
 
 export const createOrder = async (totalAmount, token) => {
     try {
@@ -25,13 +25,13 @@ export const createOrder = async (totalAmount, token) => {
 
 
 
-export const initiatePayment = async (productId, contact, totalAmount, address, orderId, quantity, token) => {
+export const initiatePayment = async (productId, contact, totalAmount, address, orderId, quantity, token, productName) => {
     try {
         const options = {
             key: "rzp_test_lQz64anllWjB83",
             amount: totalAmount * 100,
             currency: "INR",
-            name: productId,
+            name: productName,
             contact: contact,
             address: address,
             description: `Product Order`,
@@ -51,7 +51,7 @@ export const initiatePayment = async (productId, contact, totalAmount, address, 
                             razorpay_payment_id,
                             razorpay_order_id,
                             razorpay_signature,
-                            orderDetails: { productId, contact, totalAmount, address, quantity },
+                            orderDetails: { productId, contact, totalAmount, address, quantity, productName },
                         },
                         {
                             headers: {
@@ -102,3 +102,23 @@ export const fetchOrders = async (token) => {
         throw new Error("Failed to fetch orders.");
     }
 };
+
+export const fetchSingleOrders = async (token, userId) => {
+    try {
+        const response = await axios.get(
+            `${GET_SINGLE_ORDERS}/${userId}`, // Send userId as a route parameter
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        console.log("API Response:", response);
+        return response.data?.order || [];
+    } catch (error) {
+        console.error("Error fetching orders:", error);
+        throw new Error("Failed to fetch orders.");
+    }
+};
+

@@ -81,5 +81,6 @@ export const subscription = {
 export const order = {
   CREATE_PAYMENT: BASE_URL + "/orders/create",
   VERIFY_PAYMENT: BASE_URL + "/orders/payment-success",
-  GET_ORDERS: BASE_URL + "/orders/getAll"
+  GET_ORDERS: BASE_URL + "/orders/getAll",
+  GET_SINGLE_ORDERS: BASE_URL + "/orders/get"
 }

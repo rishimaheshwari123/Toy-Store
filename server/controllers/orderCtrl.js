@@ -1,6 +1,7 @@
 const Order = require("../model/orderModel")
 const crypto = require("crypto");
 const { razorpayInstance } = require("../config/ragorpay");
+const mongoose = require("mongoose");
 
 const createOrderCtrl = async (req, res) => {
     try {
@@ -28,10 +29,10 @@ const createOrderCtrl = async (req, res) => {
 const verifyPaymentCtrl = async (req, res) => {
     try {
         const { razorpay_payment_id, razorpay_order_id, razorpay_signature, orderDetails } = req.body;
-        const { productId, contact, totalAmount, address, quantity } = orderDetails;
+        const { productId, contact, totalAmount, address, quantity, productName } = orderDetails;
 
         const userId = req.user.id
-        if (!productId || !contact || !totalAmount || !address || !quantity) {
+        if (!productId || !contact || !totalAmount || !address || !quantity || !productName) {
             return res.status(400).json({ message: "Missing order details." });
         }
 
@@ -47,6 +48,7 @@ const verifyPaymentCtrl = async (req, res) => {
                 totalAmount,
                 address,
                 quantity,
+                productName,
                 paymentDetails: {
                     razorpay_payment_id,
                     razorpay_order_id,
@@ -82,5 +84,35 @@ const getUserOrdersCtrl = async (req, res) => {
     }
 };
 
+const getSingleUserOrdersCtrl = async (req, res) => {
+    try {
+        const { userId } = req.params;
 
-module.exports = { createOrderCtrl, verifyPaymentCtrl, getUserOrdersCtrl }
+        // Validate userId
+        if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+            return res.status(400).json({ success: false, message: "Invalid user ID." });
+        }
+
+        // Fetch all orders for the user
+        const order = await Order.find({ userId }).populate("userId");
+
+        // Check if orders exist
+        if (!order || order.length === 0) {
+            return res.status(404).json({ success: false, message: "No orders found for this user." });
+        }
+
+        return res.status(200).json({
+            success: true,
+            order,
+            total: order.length
+        });
+    } catch (error) {
+        console.error("Error in getSingleUserOrdersCtrl:", error);
+        return res.status(500).json({ success: false, message: "Internal server error." });
+    }
+};
+
+
+
+
+module.exports = { createOrderCtrl, verifyPaymentCtrl, getUserOrdersCtrl, getSingleUserOrdersCtrl }

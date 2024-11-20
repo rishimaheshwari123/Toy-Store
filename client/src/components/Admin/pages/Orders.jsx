@@ -40,7 +40,8 @@ const Orders = () => {
           <thead>
             <tr>
               <th className="border px-4 py-2">Order ID</th>
-              <th className="border px-4 py-2">Product</th>
+              <th className="border px-4 py-2">ProductID</th>
+              <th className="border px-4 py-2">Product Name</th>
               <th className="border px-4 py-2">Price</th>
               <th className="border px-4 py-2">Status</th>
               <th className="border px-4 py-2">Date</th>
@@ -52,6 +53,7 @@ const Orders = () => {
                 <tr key={order._id}>
                   <td className="border px-4 py-2">{order._id}</td>
                   <td className="border px-4 py-2">{order.productId}</td>
+                  <td className="border px-4 py-2">{order?.productName}</td>
                   <td className="border px-4 py-2">₹{order.totalAmount}</td>
                   <td className="border px-4 py-2">{order.status}</td>
                   <td className="border px-4 py-2">

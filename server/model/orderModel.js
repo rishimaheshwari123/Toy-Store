@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
         required: true,
     }],
     // quantity: { type: Number, required: true },
-    // size: { type: String, required: true },
+    productName: { type: String, required: true },
     contact: { type: String, required: true },
     quantity: { type: String, required: true },
     totalAmount: { type: Number, required: true },
@@ -18,7 +18,7 @@ const orderSchema = new mongoose.Schema({
         razorpay_signature: { type: String, required: true },
     },
     status: { type: String, default: "Pending" },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "auth", required: true }, // Reference to User
+    userId: [{ type: mongoose.Schema.Types.ObjectId, ref: "auth", required: true }], // Reference to User
 }, { timestamps: true });
 
 const Order = mongoose.model("Order", orderSchema);

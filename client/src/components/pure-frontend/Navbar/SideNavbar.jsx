@@ -116,6 +116,8 @@ function SideNavbar() {
                 />
               </div>
               <div className="flex flex-col  text-lg gap-1 items-center justify-end w-full">
+                <p>{user?.name}</p>
+
                 {/* <div className=" ">
                   <div className="flex items-center justify-end w-full">
                     <div className="">{icon}</div>
@@ -191,6 +193,12 @@ function SideNavbar() {
                       )}
                     </li>
                   ))}
+                  <Link
+                    to="/order"
+                    className="flex items-center space-x-1 text-white"
+                  >
+                    <span>My Order</span>
+                  </Link>
                   {!user ? (
                     <Link
                       to={"/login"}

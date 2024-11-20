@@ -18,6 +18,7 @@ import HomePage from "./pages/HomePage";
 import Product from "./pages/Product";
 import Register from "./components/Admin/pages/Register";
 import Orders from "./components/Admin/pages/Orders";
+import MyOrder from "./components/Admin/pages/MyOrder";
 
 const App = () => {
   const { isMenuOpen } = useSelector((state) => state.news);
@@ -51,6 +52,7 @@ const App = () => {
         {/* Authentication Routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/order" element={<MyOrder />} />
 
         {/* Category and Subcategory Routes */}
         <Route path="/category/:id" element={<SingleCategory />} />
