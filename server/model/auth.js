@@ -22,23 +22,47 @@ const authSchema = new mongoose.Schema(
             required: true,
         },
 
-
         role: {
             type: String,
-            enum: ["User", "Admin",],
+            enum: ["User", "Admin"],
             default: "User",
             required: true,
         },
-        subscriptions: [
 
+        subscriptions: [
             {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Subscriptions'
             }
         ],
+
         token: {
             type: String,
         },
+
+        // Address Field
+        address: {
+            address: {
+                type: String,
+                required: false, // You can set this as required or optional depending on your needs
+            },
+            pincode: {
+                type: String,
+                required: false, // Optional, set to required if needed
+            },
+            city: {
+                type: String,
+                required: false,
+            },
+            phone: {
+                type: String,
+                required: false,
+            },
+            state: {
+                type: String,
+                required: false,
+            }
+        }
 
     },
     { timestamps: true }

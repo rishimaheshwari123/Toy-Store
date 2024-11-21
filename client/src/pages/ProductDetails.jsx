@@ -5,13 +5,13 @@ import { useParams } from "react-router-dom";
 import { FaWhatsapp } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { createOrder, initiatePayment } from "../services/operations/order";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../components/footer/Footer";
 import { getSingleUserApi } from "../services/operations/admin";
-
+import { addToCart, removeFromCart } from "../redux/cartSlice";
 const ProductDetails = () => {
   const { user } = useSelector((state) => state.auth);
-  const [news, setNews] = useState();
+  const [news, setNews] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
@@ -21,6 +21,8 @@ const ProductDetails = () => {
   const [discountedAmount, setDiscountedAmount] = useState(0);
   const [subscription, setSubscription] = useState({});
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
 
   const getSubscriptionDetails = async () => {
     try {
@@ -110,6 +112,25 @@ const ProductDetails = () => {
     }
   };
 
+  const isProductInCart = cart.some(
+    (cartItem) => cartItem.product._id === id
+  );
+
+
+  const handleAddToCart = () =>{
+    if(news){
+      dispatch(
+        addToCart({
+          products: news,
+          quantity,
+            })
+      );
+    }
+
+  }
+
+  
+
   if (loading) return <p>Loading...</p>;
 
   return (
@@ -160,6 +181,7 @@ const ProductDetails = () => {
               <p className="text-blue-700 font-bold mb-4">
                 After Discount: ₹{discountedAmount.toFixed(2)}
               </p>
+              <div className=" flex justify-around">
               <a
                 onClick={handleBuyNow}
                 className="flex cursor-pointer justify-center text-white font-bold items-center text-xl lg:text-2xl bg-[#01AD18] p-2 pl-5 rounded-3xl py-3 mb-5 gap-3"
@@ -167,6 +189,26 @@ const ProductDetails = () => {
                 <FaWhatsapp size={30} />
                 Book Now
               </a>
+              {
+                isProductInCart ?  (
+                  <button 
+         onClick={() => dispatch(removeFromCart(news?._id))}
+              className="flex cursor-pointer justify-center text-white font-bold items-center text-xl lg:text-2xl bg-[#344ac9] p-2 pl-5 rounded-3xl py-3 mb-5 gap-3">
+             Remove To Cart
+              </button>
+                )
+                :
+                (
+                  <button 
+              onClick={handleAddToCart}
+              className="flex cursor-pointer justify-center text-white font-bold items-center text-xl lg:text-2xl bg-[#344ac9] p-2 pl-5 rounded-3xl py-3 mb-5 gap-3">
+             Add To Cart
+              </button>
+                )
+              }
+            
+              </div>
+          
             </div>
           </div>
         ) : (

@@ -41,6 +41,7 @@ app.use("/api/v1/product", require("./routes/productRoute"))
 app.use("/api/v1/image", require("./routes/imageRoute"))
 app.use("/api/v1/subscription", require("./routes/subscriptionRoute"))
 app.use("/api/v1/orders", require("./routes/orderRoute"))
+app.use("/api/v1/order", require("./routes/orderRoutes2"))
 
 app.use("/", (req, res) => {
     res.send("Ha bhai chal rha hu. Uski tarha tere ko chod kar thodi jaunga 😀")

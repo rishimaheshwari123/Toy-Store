@@ -91,7 +91,13 @@ const Navbar = () => {
               <Link to="/" className="text-white hover:text-yellow-300">
                 Home
               </Link>
+             
             </li>
+            <li> 
+            <Link to="/cart" className="text-white hover:text-yellow-300">
+                Cart
+              </Link>
+              </li>
             <li>
               <Link to="/products" className="text-white hover:text-yellow-300">
                 Products
@@ -179,6 +185,11 @@ const Navbar = () => {
                 Home
               </Link>
             </li>
+            <li> 
+            <Link to="/cart" className="text-white hover:text-yellow-300">
+                Cart
+              </Link>
+              </li>
             <li>
               <Link to="/products" className="text-white hover:text-yellow-300">
                 Products

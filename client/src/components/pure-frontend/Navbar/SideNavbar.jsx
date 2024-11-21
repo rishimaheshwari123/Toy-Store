@@ -199,6 +199,11 @@ function SideNavbar() {
                   >
                     <span>My Order</span>
                   </Link>
+                  <li> 
+            <Link to="/cart" className="text-white hover:text-yellow-300">
+                Cart
+              </Link>
+              </li>
                   {!user ? (
                     <Link
                       to={"/login"}

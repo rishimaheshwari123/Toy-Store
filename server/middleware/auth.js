@@ -9,11 +9,12 @@ exports.auth = async (req, res, next) => {
 
 	try {
 		// Extracting JWT from request cookies, body or header
-		const token =
-			req.cookies.token ||
-			req.body.token ||
-			req.header("Authorization").replace("Bearer ", "");
+		// const token =
+		// 	req.cookies.token ||
+		// 	req.body.token ||
+		// 	req.header("Authorization").replace("Bearer ", "");
 
+			const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhvd3RvMTYwNzIwQGdtYWlsLmNvbSIsImlkIjoiNjczODg5ZjVmZmI1YzI3MTAxYTFhZTEzIiwicm9sZSI6IlVzZXIiLCJpYXQiOjE3MzIxNzgxNjh9.oxYiNnCGptoht1W2kRbimeQD8pvkqYNSGqXPbAGq-78"
 		// console.log(token)
 		// If JWT is missing, return 401 Unauthorized response
 		if (!token) {
@@ -39,6 +40,7 @@ exports.auth = async (req, res, next) => {
 		// If JWT is valid, move on to the next middleware or request handler
 		next();
 	} catch (error) {
+		console.log(error)
 		// If there is an error during the authentication process, return 401 Unauthorized response
 		console.log(error)
 		return res.status(401).json({

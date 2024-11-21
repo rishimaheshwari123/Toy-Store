@@ -20,6 +20,7 @@ import Register from "./components/Admin/pages/Register";
 import Orders from "./components/Admin/pages/Orders";
 import MyOrder from "./components/Admin/pages/MyOrder";
 import GetSubscription from "./components/Admin/pages/GetSubscription";
+import Cart from "./pages/Cart";
 
 const App = () => {
   const { isMenuOpen } = useSelector((state) => state.news);
@@ -59,6 +60,7 @@ const App = () => {
         {/* Category and Subcategory Routes */}
         <Route path="/category/:id" element={<SingleCategory />} />
         <Route path="/subcategory/:id" element={<SubCategorySingle />} />
+          <Route path="/cart" element={<Cart />} />
 
         {/* Conditional Route for Product Details */}
         <Route

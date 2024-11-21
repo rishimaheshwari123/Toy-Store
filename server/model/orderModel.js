@@ -1,26 +1,87 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); // Erase if already required
 
-const orderSchema = new mongoose.Schema({
-    productId: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
-        required: true,
-    }],
-    // quantity: { type: Number, required: true },
-    productName: { type: String, required: true },
-    contact: { type: String, required: true },
-    quantity: { type: String, required: true },
-    totalAmount: { type: Number, required: true },
-    address: { type: String, required: true },
-    paymentDetails: {
-        razorpay_payment_id: { type: String, required: true },
-        razorpay_order_id: { type: String, required: true },
-        razorpay_signature: { type: String, required: true },
+// Declare the Schema of the Mongo model
+const orderSchema = new mongoose.Schema(
+  {
+
+
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-    status: { type: String, default: "Pending" },
-    userId: [{ type: mongoose.Schema.Types.ObjectId, ref: "auth", required: true }], // Reference to User
-}, { timestamps: true });
+    shippingInfo: {
+      name: {
+        type: String,
+        required: true,
+      },
+      address: {
+        type: String,
+        required: true,
+      },
+      city: {
+        type: String,
+        required: true,
+      },
+      state: {
+        type: String,
+        required: true,
+      },
+      pincode: {
+        type: Number,
+        required: true,
+      },
+    },
+    paymentInfo: {
+      razorpayOrderId: {
+        type: String,
+        required: true,
+      },
+      razorpayPaymentId: {
+        type: String,
+        required: true,
+      },
+    },
+    orderItems: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product",
+          required: true,
+        },
+     
 
-const Order = mongoose.model("Order", orderSchema);
+   
 
-module.exports = Order;
+        quantity: {
+          type: Number,
+          required: true,
+        },
+    
+      },
+    ],
+    paidAt: {
+      type: Date,
+      default: Date.now(),
+    },
+    month: {
+      type: Number,
+      default: new Date().getMonth(),
+    },
+    totalPrice: {
+      type: String,
+      required: true,
+    },
+  
+    orderStatus: {
+      type: String,
+      default: "Ordered",
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+//Export the model
+module.exports = mongoose.model("Order", orderSchema);
