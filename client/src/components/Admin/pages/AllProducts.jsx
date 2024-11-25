@@ -24,10 +24,10 @@ const AllProducts = () => {
     getAllProduct();
   }, []);
   return (
-    <div className="p-8  ">
-      <h1 className="text-2xl font-bold mb-4 pl-10">All Products</h1>
+    <div className="lg:p-8  ">
+      <h1 className="text-2xl font-bold mb-4 lg:pl-10">All Products</h1>
 
-      <div className="overflow-x-auto max-h-[70vh] pl-10">
+      <div className="overflow-x-auto max-h-[70vh] lg:pl-10">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>

@@ -61,7 +61,7 @@ const Sidebar = () => {
     { to: "/", icon: <FaHome />, label: "Back To Home" },
     { to: "/admin/dashboard", icon: <FcBullish />, label: "Dashboard" },
     { to: "/admin/addProduct", icon: <FcPlus />, label: "Add Product" },
-    { to: "/admin/allProduct", icon: <FcPieChart />, label: "All News" },
+    { to: "/admin/allProduct", icon: <FcPieChart />, label: "All Product" },
     // { to: "/admin/breaking", icon: <FcNews />, label: "Breaking News" },
     { to: "/admin/category", icon: <FcTreeStructure />, label: "Category" },
     {
