@@ -1,131 +1,120 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../pure-frontend/Navbar/Navbar";
-import Footer from "../../footer/Footer";
+import { getAllOrder } from "../../../services/operations/orderMultiple";
 import { useSelector } from "react-redux";
-import { fetchSingleOrders } from "../../../services/operations/order";
-import { getSingleUserApi } from "../../../services/operations/admin";
+import { FaTruck, FaMoneyBillAlt } from "react-icons/fa";
+import Footer from "../../footer/Footer";
+import Navbar from "../../pure-frontend/Navbar/Navbar";
 
-const MyOrder = () => {
-  const { user } = useSelector((state) => state.auth);
+function Order() {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [subscription, setSubscription] = useState({});
-
-  const getSingleOrder = async () => {
-    try {
-      setLoading(true);
-      const response = await fetchSingleOrders(user?.token, user?._id);
-      console.log(response, "order");
-      setOrders(Array.isArray(response) ? response : [response]);
-    } catch (err) {
-      setError(err.message || "Failed to fetch orders.");
-    } finally {
-      setLoading(false);
-    }
-  };
-  const getSubscriptionDetails = async () => {
-    try {
-      const response = await getSingleUserApi(user?._id);
-      setSubscription(response);
-    } catch (error) {
-      console.error("Error fetching subscription details:", error);
-    }
-  };
+  const { token } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user?.token && user?._id) {
-      getSingleOrder();
-      getSubscriptionDetails();
-    }
-  }, [user]);
+    const fetchData = async () => {
+      try {
+        const fetchAllOrders = getAllOrder(); // This returns a function
+        const res = await fetchAllOrders(token); // Call the returned function to fetch orders
+        setOrders(res);
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+
+    fetchData();
+  }, [token]);
+
+  // Function to format price to INR currency
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(price);
+  };
 
   return (
-    <div className="bg-gray-50 min-h-screen flex flex-col mt-20">
-      <Navbar />
-      <div className="flex-grow container mx-auto p-6">
-        <h1 className="text-2xl font-bold text-center mb-6">My Orders</h1>
+    <>
+    <Navbar />
 
-        {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg text-gray-500">Loading your orders...</p>
-          </div>
-        ) : error ? (
-          <div className="flex justify-center items-center h-64">
-            <p className="text-red-500 text-lg">{error}</p>
-          </div>
-        ) : orders.length > 0 ? (
-          <div className="space-y-6">
-            {orders.map((order) => (
+    <div className="flex flex-col items-center px-4 min-h-[90vh] mt-[100px]">
+      <div className="w-full flex justify-center text-2xl font-bold p-4  ">
+        <h2 className="bordr-b-2 mb-6">My Orders</h2>
+      </div>
+
+      {orders?.length === 0 ? (
+        <div className="text-center text-2xl mt-10">No Order Found</div>
+      ) : (
+        <div className="container mx-auto px-4">
+          {orders
+            ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            ?.map((order) => (
               <div
-                key={order._id}
-                className="bg-white shadow-md rounded-lg p-6 max-w-3xl mx-auto"
+                key={order?._id}
+                className="my-4 p-6 border border-gray-300 rounded-lg shadow-lg bg-white"
               >
-                <h2 className="text-lg font-bold text-gray-700 mb-4">
-                  Order Details
-                </h2>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">Order ID:</span>
-                    <span className="text-gray-800">{order._id}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">
-                      Product Name:
-                    </span>
-                    <span className="text-gray-800">{order.productName}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">
-                      Product ID:
-                    </span>
-                    <span className="text-gray-800">{order.productId}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">Price:</span>
-                    <span className="text-gray-800">${order?.totalAmount}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">Status:</span>
-                    <span
-                      className={`text-sm px-3 py-1 rounded-full ${
-                        order.status === "Delivered"
-                          ? "bg-green-100 text-green-700"
-                          : "bg-yellow-100 text-yellow-700"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">
-                      Order Date:
-                    </span>
-                    <span className="text-gray-800">
-                      {new Date(order.createdAt).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-500 font-medium">
-                      Subscription
-                    </span>
-                    <span className="text-gray-800">
-                      {subscription?.subscriptions[0]?.type}
-                    </span>
-                  </div>
+                <div className="flex flex-col md:flex-row md:justify-between mb-4">
+                
+                  <span className="text-gray-600">
+                    <strong>Order Date:</strong>{" "}
+                    {new Date(order?.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold mb-2">
+                    Shipping Information:
+                  </h3>
+                  <p className="text-gray-700">{order?.shippingInfo?.name}</p>
+                  <p className="text-gray-700">
+                    {order?.shippingInfo?.address}
+                  </p>
+                  <p className="text-gray-700">
+                    {order?.shippingInfo?.city}, {order?.shippingInfo?.state} -{" "}
+                    {order?.shippingInfo?.pincode}
+                  </p>
+                </div>
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold mb-2">Order Items:</h3>
+                  <ul className="list-disc pl-5">
+                    {order?.orderItems?.map((item) => (
+                      <li key={item?._id} className="flex items-center mb-2">
+                        <img
+                          src={item?.product?.images?.[0]?.url}
+                          alt={item?.product?.title}
+                          className="w-12 h-12 object-cover rounded-full mr-3"
+                        />
+                        <span className="text-gray-700">
+                          {item?.product?.title} - Quantity: {item?.quantity}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="flex flex-col md:flex-row md:justify-between items-start md:items-center">
+                  <span className="text-gray-600 flex items-center mb-2 gap-1 md:mb-0">
+                    <FaMoneyBillAlt className="mr-2 text-green-600" />
+                    <strong>Total Price:</strong>{" "}
+                    {formatPrice(order?.totalPrice)}
+                  </span>
+                  {/* <span className="text-gray-600 flex items-center">
+                  <FaTruck className="mr-2 text-blue-600" />
+                  <strong>Payment Status:</strong> {order?.orderStatus}
+                </span> */}
                 </div>
               </div>
             ))}
-          </div>
-        ) : (
-          <div className="flex justify-center items-center h-64">
-            <p className="text-lg text-gray-500">No orders found.</p>
-          </div>
-        )}
-      </div>
-      <Footer />
+        </div>
+      )}
     </div>
-  );
-};
+    <Footer />
+    </>
 
-export default MyOrder;
+  );
+}
+
+export default Order;
+
+{
+  /* <span className="text-gray-600 flex items-center">
+  <FaTruck className="mr-2 text-blue-600" />
+  <strong>Payment Status:</strong> {order.orderStatus}
+</span> */
+}

@@ -284,7 +284,7 @@ const getAllOrder = async(req,res)=>{
   try {
 
     const userId = req.user.id
-
+console.log(userId)
     if(!userId){
       return res.status(401).json({
         success: false,
