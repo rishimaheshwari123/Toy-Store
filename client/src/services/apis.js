@@ -15,7 +15,7 @@ export const adminEndpoints = {
   ADD_NEWS_API: BASE_URL + "/news/create",
   UPDATE_NEWS_API: BASE_URL + "/news/update",
   GET_ALL_NEWS_API: BASE_URL + "/news/all",
-  DELETE_NEWS_API: BASE_URL + "/news/delete",
+  DELETE_NEWS_API: BASE_URL + "/product/delete",
   DETAILS_NEWS_API: BASE_URL + "/news",
 
 

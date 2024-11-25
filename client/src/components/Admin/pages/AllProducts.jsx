@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import {deleteNews} from '../../../services/operations/admin.js'
 const AllProducts = () => {
   const [product, setProduct] = useState([]);
 
@@ -19,7 +19,15 @@ const AllProducts = () => {
     }
   };
 
-  const handleDelete = (id) => {};
+
+  const handleDelete = async (id) => {
+    await deleteNews(id)
+    getAllProduct()
+    
+  }
+  
+
+
   useEffect(() => {
     getAllProduct();
   }, []);

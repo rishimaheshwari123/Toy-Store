@@ -373,13 +373,13 @@ export const deleteNews = async (id, token) => {
       }
     );
 
-    console.log("DELETE News API RESPONSE............", response.data);
+    console.log("DELETE Product API RESPONSE............", response.data);
 
 
     if (!response?.data?.success) {
-      throw new Error(toast.error("Could Not Delete News"));
+      throw new Error(toast.error("Could Not Delete Product"));
     }
-    toast.success("News deleted successfully!")
+    toast.success("Product deleted successfully!")
 
   } catch (error) {
     console.log(error)
