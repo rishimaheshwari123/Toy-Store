@@ -15,11 +15,9 @@ const User = require("../model/auth");
 
 const capturePayment = async (req, res) => {
   const { products } = req.body;
-  console.log(req.body)
   const { id } = req.user;
 
   try {
-    // Check if user ID exists
     if (!id) {
       return res.status(400).json({ success: false, message: "User not found" });
     }
@@ -50,7 +48,7 @@ const capturePayment = async (req, res) => {
         // Add the price of the product to the total amount
         let am = product.price * item.quantity
         total_amount += am;
-    
+
       } catch (error) {
         console.log(error);
         return res.status(500).json({ success: false, message: error.message });
@@ -59,8 +57,8 @@ const capturePayment = async (req, res) => {
 
 
 
-    
-    
+
+
     // Prepare payment options
     const options = {
       amount: total_amount * 100, // Amount in paise (multiplied by 100)
@@ -71,7 +69,7 @@ const capturePayment = async (req, res) => {
     // Initiate payment using your preferred gateway (e.g., Razorpay)
     const paymentResponse = await razorpayInstance.orders.create(options);
     // console.log("Payment Response:", paymentResponse);
-   
+
 
     // Send success response with payment data
     res.json({
@@ -88,40 +86,40 @@ const capturePayment = async (req, res) => {
 
 const paymentVerification = async (req, res) => {
   console.log("enter verify")
-    const razorpay_order_id = req.body?.razorpay_order_id
-    const razorpay_payment_id = req.body?.razorpay_payment_id
-    const razorpay_signature = req.body?.razorpay_signature
-    const product = req.body?.products
-    const address = req.body?.address
-    const payable = req.body?.payable
-  
+  const razorpay_order_id = req.body?.razorpay_order_id
+  const razorpay_payment_id = req.body?.razorpay_payment_id
+  const razorpay_signature = req.body?.razorpay_signature
+  const product = req.body?.products
+  const address = req.body?.address
+  const payable = req.body?.payable
+
   const userId = req.user.id
 
-    let body = razorpay_order_id + "|" + razorpay_payment_id
+  let body = razorpay_order_id + "|" + razorpay_payment_id
 
-    const expectedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_SECRET)
-      .update(body.toString())
-      .digest("hex")
-  
-      if (expectedSignature === razorpay_signature) {
-        try {
-          // Call the createOrder function
+  const expectedSignature = crypto
+    .createHmac("sha256", process.env.RAZORPAY_SECRET)
+    .update(body.toString())
+    .digest("hex")
 
-         
-          await createOrder(product, userId, address, razorpay_order_id, razorpay_payment_id, payable, res);
-      
-          // Send the response after the order is successfully created
-          return res.status(200).json({ success: true, message: "Payment Verified" });
-        } catch (error) {
-          // Handle any errors that occur during order creation
-          console.error("Error creating order:", error);
-          return res.status(500).json({ success: false, message: "Error creating order" });
-        }
-      }
-      
-  
-    return res.status(200).json({ success: false, message: "Payment Failed" })
+  if (expectedSignature === razorpay_signature) {
+    try {
+      // Call the createOrder function
+
+
+      await createOrder(product, userId, address, razorpay_order_id, razorpay_payment_id, payable, res);
+
+      // Send the response after the order is successfully created
+      return res.status(200).json({ success: true, message: "Payment Verified" });
+    } catch (error) {
+      // Handle any errors that occur during order creation
+      console.error("Error creating order:", error);
+      return res.status(500).json({ success: false, message: "Error creating order" });
+    }
+  }
+
+
+  return res.status(200).json({ success: false, message: "Payment Failed" })
 };
 
 
@@ -130,16 +128,16 @@ const paymentVerification = async (req, res) => {
 
 
 
-const createOrder = asyncHandler(async (products, userId, fullAddress, razorpay_order_id, razorpay_payment_id,payable, res) => {
+const createOrder = asyncHandler(async (products, userId, fullAddress, razorpay_order_id, razorpay_payment_id, payable, res) => {
   const userDetails = await User.findById(userId);
-console.log(payable)
+  console.log(payable)
   const {
     city,
     pincode,
     state,
-    
+
     address,
-   
+
   } = fullAddress;
 
 
@@ -151,12 +149,12 @@ console.log(payable)
     const order = await Order.create({
       user: userId,
       shippingInfo: {
-              name: userDetails.name, // assuming user has a name field
-              address: address,
-              city: city,
-              state: state,
-              pincode: pincode,
-            },
+        name: userDetails.name, // assuming user has a name field
+        address: address,
+        city: city,
+        state: state,
+        pincode: pincode,
+      },
       paymentInfo: {
         razorpayOrderId: razorpay_order_id,
         razorpayPaymentId: razorpay_payment_id,
@@ -172,11 +170,11 @@ console.log(payable)
 
 
 
-    
 
 
 
-  
+
+
 
   } catch (error) {
     console.error(error);
@@ -187,12 +185,12 @@ console.log(payable)
   }
 });
 
-  // Send Payment Success Email
+// Send Payment Success Email
 
 
-const shipRocket = asyncHandler(async(address, products,payable,userId)=>{
+const shipRocket = asyncHandler(async (address, products, payable, userId) => {
 
-  console.log("product",products)
+  console.log("product", products)
 
   const orderItems = products.map(p => ({
     name: p.product.title,
@@ -204,12 +202,12 @@ const shipRocket = asyncHandler(async(address, products,payable,userId)=>{
     hsn: "0000"
   }));
 
-  console.log("items",orderItems)
+  console.log("items", orderItems)
 
 
-const userDetails = await User.findById(userId)
+  const userDetails = await User.findById(userId)
 
-  const{
+  const {
     name,
     email
   } = userDetails
@@ -272,7 +270,7 @@ const userDetails = await User.findById(userId)
     } else {
       throw new Error('An error occurred while creating the order');
     }
-  
+
   } catch (error) {
     console.error('Error creating order:', error.response?.data || error.message);
     throw new Error('An error occurred while creating the order');
@@ -280,32 +278,32 @@ const userDetails = await User.findById(userId)
 });
 
 
-const getAllOrder = async(req,res)=>{
+const getAllOrder = async (req, res) => {
   try {
 
     const userId = req.user.id
-console.log(userId)
-    if(!userId){
+    console.log(userId)
+    if (!userId) {
       return res.status(401).json({
         success: false,
         message: `User is not Found`,
       })
     }
-    
+
     const orders = await Order.find({ user: userId })
-    .populate({
+      .populate({
         path: 'orderItems.product',
         model: 'Product',
-    })
-    .exec();
+      })
+      .exec();
 
-console.log('Populated Orders:', orders);
+    console.log('Populated Orders:', orders);
 
     return res.status(200).json({
       orders,
-success: true,
-message: `Fetch Orders Successfully`,
-})
+      success: true,
+      message: `Fetch Orders Successfully`,
+    })
 
   } catch (error) {
     console.error(error)
@@ -343,7 +341,7 @@ const adminAllOrders = async (req, res) => {
 
 
 module.exports = {
-    capturePayment,
+  capturePayment,
   paymentVerification,
   createOrder,
   shipRocket,

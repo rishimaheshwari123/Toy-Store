@@ -3,27 +3,30 @@ const crypto = require("crypto");
 const { razorpayInstance } = require("../config/ragorpay");
 const mongoose = require("mongoose");
 
-const createOrderCtrl = async (req, res) => {
+const createRazorpayOrderCtrl = async (req, res) => {
     try {
-        const { totalAmount } = req.body;
+        const { amount } = req.body;
+        console.log("Received payment request:", req.body);
 
         const options = {
-            amount: totalAmount * 100,
+            amount: amount * 100, // Convert to paise
             currency: "INR",
             receipt: `order_rcptid_${Math.floor(Math.random() * 100000)}`,
         };
 
         const order = await razorpayInstance.orders.create(options);
-        res.status(200).json({ orderId: order.id });
+        console.log("Created Razorpay order:", order);
+
+        // Return the entire order object
+        res.status(200).json({ order });
     } catch (error) {
-        console.log(error)
+        console.error("Error creating Razorpay order:", error);
         return res.status(500).json({
             success: false,
             message: "Error in creating order"
-        })
+        });
     }
-
-}
+};
 
 
 const verifyPaymentCtrl = async (req, res) => {
